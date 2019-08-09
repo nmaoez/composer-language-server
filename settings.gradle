@@ -1,0 +1,4 @@
+include 'com.novomind.language.server.expression'
+include 'com.novomind.language.server.expression.ide'
+include 'com.novomind.language.server.expression.websockets'
+include 'com.novomind.language.server.expression.tests'

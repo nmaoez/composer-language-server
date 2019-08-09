@@ -1,0 +1,30 @@
+dependencies {
+	compile 'org.eclipse.xtext:org.eclipse.xtext:'
+	compile 'org.eclipse.xtext:org.eclipse.xtext.xbase:' + project['xtext']
+}
+
+configurations {
+	mwe2 {
+		extendsFrom compile
+	}
+}
+
+dependencies {
+	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.launch:2.8.3'
+	mwe2 'org.eclipse.xtext:org.eclipse.xtext.xtext.generator:' + project['xtext']
+}
+
+task generateXtextLanguage(type: JavaExec) {
+	main = 'org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher'
+	classpath = configurations.mwe2
+	inputs.file 'src/com/novomind/language/server/GenerateExpression.mwe2'
+	inputs.file 'src/com/novomind/language/server/Expression.xtext'
+	outputs.dir 'src-gen'
+	args += 'src/com/novomind/language/server/GenerateExpression.mwe2'
+	args += '-p'
+	args += "rootPath=/${projectDir}/.."
+}
+
+generateXtext.dependsOn(generateXtextLanguage)
+clean.dependsOn(cleanGenerateXtextLanguage)
+eclipse.classpath.plusConfigurations += [configurations.mwe2]

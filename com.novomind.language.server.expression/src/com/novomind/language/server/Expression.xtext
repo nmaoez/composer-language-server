@@ -1,0 +1,9 @@
+grammar com.novomind.language.server.Expression with org.eclipse.xtext.common.Terminals
+
+generate expression "http://www.novomind.com/language/server/Expression"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';

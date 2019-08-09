@@ -1,0 +1,40 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath 'org.xtext:xtext-gradle-plugin:2.0.7'
+	}
+}
+
+configure(subprojects.findAll { it.name.startsWith('com.novomind.language.server') }) {
+	repositories {
+		maven {
+			url 'https://oss.sonatype.org/content/repositories/snapshots'
+		}
+		jcenter()
+	}
+	
+	apply plugin: 'java'
+	apply plugin: 'org.xtext.xtend'
+	apply from: "${rootDir}/gradle/source-layout.gradle"
+	apply from: "${rootDir}/gradle/maven-deployment.gradle"
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+	
+	group = 'com.novomind.ecom'
+	
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
+	
+	configurations.all {
+		exclude group: 'asm'
+	}
+	
+	dependencies {
+		compile platform('org.eclipse.xtext:xtext-dev-bom:' + project['xtext'])
+	}
+}
