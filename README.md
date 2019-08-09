@@ -1,5 +1,7 @@
 # Composer Language Server
 
+A basic example project for connecting the Monaco Editor with an own Xtext language server.
+
 ## Getting started
 
 1. Clone project
