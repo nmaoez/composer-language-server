@@ -10,9 +10,14 @@ import {
   createConnection
 } from 'monaco-languageclient';
 import ReconnectingWebSocket from 'reconnecting-websocket';
+import languageMode from './language-mode';
 
-const LANGUAGE_ID = 'mydsl';
-//const LANGUAGE_ID = 'expressions';
+const EDITOR_CONTENT = `Hello Xtext!
+Hello VSCode from Xtext!
+Hello ThisFile from Other!
+Hello you!`;
+
+const LANGUAGE_ID = 'expression';
 
 const guid = () => {
   const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -46,17 +51,23 @@ const createWebSocket = url => new ReconnectingWebSocket(url, undefined, {
 
 monaco.languages.register({
   id: LANGUAGE_ID,
-  extensions: [`.${LANGUAGE_ID}`]
+  aliases: [
+    LANGUAGE_ID
+  ],
+  extensions: [`.${LANGUAGE_ID}`],
+  mimetypes: [
+    `text/${LANGUAGE_ID}`
+  ]
 });
+monaco.languages.setMonarchTokensProvider(LANGUAGE_ID, languageMode);
 
-const editor = monaco.editor.create(document.getElementById('container'), {
-  model: monaco.editor.createModel('Hello Xtext!', LANGUAGE_ID, monaco.Uri.parse(`inmemory:/demo/${guid()}.${LANGUAGE_ID}`))
+monaco.editor.create(document.getElementById('container'), {
+  model: monaco.editor.createModel(EDITOR_CONTENT, LANGUAGE_ID, monaco.Uri.parse(`inmemory:/demo/${guid()}.${LANGUAGE_ID}`))
 });
 
 MonacoServices.install(monaco);
 
 listen({
-  //webSocket: createWebSocket(createUrl('localhost', '5007', '/expressions')),
   webSocket: createWebSocket(createUrl('localhost', '4389', '/')),
   onConnection: connection => {
     const languageClient = createLanguageClient(connection).start();
