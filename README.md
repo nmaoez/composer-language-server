@@ -14,7 +14,7 @@ cd monaco-editor-lsp-example
 npm install
 ```
 
-4. Run the `main`-method in the class `RunWebSocketServer3.xtend` in the subproject in Eclipse
+4. Run the `main`-method in the class `RunWebSocketServer3.xtend` in the subproject in Eclipse. Alternatively, `cd` into `com.novomind.language.server.expression.websockets` and run `..\gradlew.bat run`.
 5. On the command line start the frontend with the Monaco Editor:
 
 ```sh
