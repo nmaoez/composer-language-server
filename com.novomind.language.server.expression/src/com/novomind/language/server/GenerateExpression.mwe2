@@ -10,7 +10,7 @@ Workflow {
 	component = XtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
-				baseName = "com.novomind.language.server.Expression"
+				baseName = "com.novomind.language.server.expression"
 				rootPath = rootPath
 				runtimeTest = {
 					enabled = true

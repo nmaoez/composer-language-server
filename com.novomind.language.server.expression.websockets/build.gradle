@@ -11,13 +11,13 @@ dependencies {
 }
 
 // Add a start script for the websocket case
-mainClassName = 'com.novomind.language.server.expression.websockets.RunWebSocketServer'
+mainClassName = 'com.novomind.language.server.expression.websockets.RunWebSocketServer3'
 startScripts {
 	applicationName = 'composer-language-server-expression-websocket'
 }
 
 task standaloneStartScript(type: CreateStartScripts) {
-	mainClassName = 'com.novomind.language.server.expression.websockets.RunWebSocketServer'
+	mainClassName = 'com.novomind.language.server.expression.websockets.RunWebSocketServer3'
 	applicationName = 'composer-language-server-expression-websocket'
 	outputDir = new File(project.buildDir, 'scripts')
 	classpath = jar.outputs.files + project.configurations.runtime
@@ -32,6 +32,6 @@ jar {
     manifest {
         attributes 'Implementation-Title': 'Composer Language Server Expression Websocket',
                    'Implementation-Version': project['composer-language-server'],
-                   'Main-Class': 'com.novomind.language.server.expression.websockets.RunWebSocketServer'
+                   'Main-Class': 'com.novomind.language.server.expression.websockets.RunWebSocketServer3'
     }
 }
