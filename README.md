@@ -9,8 +9,10 @@ A basic example project for connecting the Monaco Editor with an own Xtext langu
 3. Open command line in project folder and run following commands:
 
 ```sh
-.\gradlew.bat clean build // Windows
-./gradlew clean build // Linux or Mac
+# Windows
+.\gradlew.bat clean build
+# Linux or Mac
+./gradlew clean build
 cd monaco-editor-lsp-example
 npm install
 ```
