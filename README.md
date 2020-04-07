@@ -1,6 +1,9 @@
 # Composer Language Server
 
-A basic example project for connecting the Monaco Editor with an own Xtext language server.
+A basic example project for connecting the Monaco Editor with an own Xtext language server. Note that this project is definitly not production ready and is based on the implementation of the following other projects:
+
+* [xtext-languageserver-example](https://github.com/cdietrich/xtext-languageserver-example)
+* [monaco-languageclient](https://github.com/TypeFox/monaco-languageclient/tree/master/example/src)
 
 ## Getting started
 
@@ -17,7 +20,7 @@ cd monaco-editor-lsp-example
 npm install
 ```
 
-4. Run the `main`-method in the class `RunWebSocketServer3.xtend` in the subproject in Eclipse. Note that you should use the Eclipse IDE for Java and DSL Developers. Alternatively you can run the language server directly in the main folder with `.\gradlew.bat run` on Windows or `./gradlew run` on Linux or Mac.
+4. Run the `main`-method in the class `RunWebSocketServer3.xtend` in the subproject in Eclipse. Note that you should use the Eclipse IDE for Java and DSL Developers. Alternatively you can run the language server directly in the project folder with `.\gradlew.bat run` on Windows or `./gradlew run` on Linux or Mac.
 5. On the command line start the frontend with the Monaco Editor:
 
 ```sh
